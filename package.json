@@ -12,7 +12,7 @@
   "author": "daye <yesongsheng@163.com>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git@github.com:DaYePython/ts-axios-daye.git"
   },
   "license": "MIT",
   "engines": {
