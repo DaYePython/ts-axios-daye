@@ -21,7 +21,7 @@ import { isObject } from "util"
         .replace(/5D/ig, ']')
  }
 
- export function buildUrl(url: string, params?: any=null): string{
+ export function buildUrl(url: string, params?: any): string{
     if (!params) { return url }
 
     const part: string[] = []
@@ -32,7 +32,7 @@ import { isObject } from "util"
             // break loop
             return
         }
-        let values[]
+        let values:string[]
         if(Array.isArray(val)) {
             values = val
             key +='[]'

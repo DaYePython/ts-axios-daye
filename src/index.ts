@@ -35,7 +35,7 @@ function transformHeaders(config: AxiosRequestConfig): any {
 }
 
 /* 处理响应 */
-function parseHeaders(headers: string): any {
+export function parseHeaders(headers: string): any {
     let parsed = Object.create(null)
     if(!headers) {return parsed}
     headers.split('\r\t').forEach((line) => {
