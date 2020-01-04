@@ -1,12 +1,14 @@
 import { AxiosRequestConfig, AxiosReponse, AxiosReponsePromise } from './types/index';
 import xhr from './xhr';
 import { buildUrl } from './helpers/url';
-import { transformRequest } from './helpers/data';
+import { transformRequest, transformResponse } from './helpers/data';
 import { processHeaders } from './helpers/header';
 function axios(config: AxiosRequestConfig): AxiosReponsePromise {
     // TODO
     processConfig(config)
-    return xhr(config)
+    return xhr(config).then((res) => {
+        return transformResponseData(res)
+    })
 }
 
 /*处理请求 */
@@ -37,7 +39,7 @@ function parseHeaders(headers: string): any {
     let parsed = Object.create(null)
     if(!headers) {return parsed}
     headers.split('\r\t').forEach((line) => {
-        let {key, value} = line.split(':')
+        let [key, value] = line.split(':')
         if(!key){
             return 
         }
@@ -48,6 +50,11 @@ function parseHeaders(headers: string): any {
 
         parsed[key] = value
     })
+}
+
+function transformResponseData(res: AxiosReponse): AxiosReponse {
+    res.data = transformResponse(res.data)
+    return res
 }
 
 
