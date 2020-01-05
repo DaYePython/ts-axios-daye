@@ -1,9 +1,9 @@
-import { AxiosRequestConfig, AxiosReponse, AxiosReponsePromise } from './types/index';
+import { AxiosRequestConfig, AxiosResponse, AxiosResponsePromise } from './types/index';
 import xhr from './xhr';
 import { buildUrl } from './helpers/url';
 import { transformRequest, transformResponse } from './helpers/data';
 import { processHeaders } from './helpers/header';
-function axios(config: AxiosRequestConfig): AxiosReponsePromise {
+function axios(config: AxiosRequestConfig): AxiosResponsePromise {
     // TODO
     processConfig(config)
     return xhr(config).then((res) => {
@@ -52,7 +52,7 @@ export function parseHeaders(headers: string): any {
     })
 }
 
-function transformResponseData(res: AxiosReponse): AxiosReponse {
+function transformResponseData(res: AxiosResponse): AxiosResponse {
     res.data = transformResponse(res.data)
     return res
 }
